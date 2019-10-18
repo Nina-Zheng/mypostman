@@ -6,52 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "1",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "0afb1da5-345a-4a53-bc7f-902712861a7e",
-						"exec": [
-							"pm.test(\"获取lt参数\", function () {",
-							"    var str = (pm.response.text()).split('global._loginTicket = \"');",
-							"    var lt = str[1].split('\";');",
-							"    pm.globals.set(\"lt\", lt[0]);",
-							"});",
-							"pm.test(\"获取execution参数\", function () {",
-							"    var str = (pm.response.text()).split('global._execution = \"');",
-							"    var execution = str[1].split('\";');",
-							"    pm.globals.set(\"execution\", execution[0]);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Referer",
-						"value": "http://cas.qa1-in.dwbops.com/login?service=http://new-hawkeye-gw-qa1-gw.dwbops.com",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"url": {
-					"raw": "http://new-hawkeye-gw-qa1-gw.dwbops.com",
-					"protocol": "http",
-					"host": [
-						"new-hawkeye-gw-qa1-gw",
-						"dwbops",
-						"com"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "2",
 			"event": [
 				{
@@ -90,12 +44,12 @@
 						},
 						{
 							"key": "lt",
-							"value": "{{lt}}",
+							"value": "e2s1",
 							"type": "text"
 						},
 						{
 							"key": "execution",
-							"value": "{{execution}}",
+							"value": "LT-34803-sUpFWhRu92aL3Ozn9pGGJdzV6QQwrx-cas.dwb123.com",
 							"type": "text"
 						},
 						{
@@ -122,33 +76,6 @@
 							"key": "service",
 							"value": "http://new-hawkeye-gw-qa1-gw.dwbops.com"
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "3",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Referer",
-						"value": "http://cas.qa1-in.dwbops.com/login?service=http://new-hawkeye-gw-qa1-gw.dwbops.com",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://new-hawkeye-gw-qa1-gw.dwbops.com/auth/login",
-					"protocol": "http",
-					"host": [
-						"new-hawkeye-gw-qa1-gw",
-						"dwbops",
-						"com"
-					],
-					"path": [
-						"auth",
-						"login"
 					]
 				}
 			},
