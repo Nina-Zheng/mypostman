@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "66342d6f-3202-40f7-9124-9fa9e870218a",
+		"name": "登录",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0afb1da5-345a-4a53-bc7f-902712861a7e",
+						"exec": [
+							"pm.test(\"获取lt参数\", function () {",
+							"    var str = (pm.response.text()).split('global._loginTicket = \"');",
+							"    var lt = str[1].split('\";');",
+							"    pm.globals.set(\"lt\", lt[0]);",
+							"});",
+							"pm.test(\"获取execution参数\", function () {",
+							"    var str = (pm.response.text()).split('global._execution = \"');",
+							"    var execution = str[1].split('\";');",
+							"    pm.globals.set(\"execution\", execution[0]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Referer",
+						"value": "http://cas.qa1-in.dwbops.com/login?service=http://new-hawkeye-gw-qa1-gw.dwbops.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://new-hawkeye-gw-qa1-gw.dwbops.com",
+					"protocol": "http",
+					"host": [
+						"new-hawkeye-gw-qa1-gw",
+						"dwbops",
+						"com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "352b86c1-2933-4586-9192-7dfba4fc0994",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "lt",
+							"value": "{{lt}}",
+							"type": "text"
+						},
+						{
+							"key": "execution",
+							"value": "{{execution}}",
+							"type": "text"
+						},
+						{
+							"key": "_eventId",
+							"value": "submit",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://cas.qa1-in.dwbops.com/login?service=http://new-hawkeye-gw-qa1-gw.dwbops.com",
+					"protocol": "http",
+					"host": [
+						"cas",
+						"qa1-in",
+						"dwbops",
+						"com"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "service",
+							"value": "http://new-hawkeye-gw-qa1-gw.dwbops.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Referer",
+						"value": "http://cas.qa1-in.dwbops.com/login?service=http://new-hawkeye-gw-qa1-gw.dwbops.com",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://new-hawkeye-gw-qa1-gw.dwbops.com/auth/login",
+					"protocol": "http",
+					"host": [
+						"new-hawkeye-gw-qa1-gw",
+						"dwbops",
+						"com"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
